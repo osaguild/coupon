@@ -3,7 +3,7 @@ import re
 
 # get shop data
 res = requests.get('https://saitama-premium-search.com/_nuxt/15e9a61.js')
-raw_data = re.findall(r'206:function\(e,t\)\{e\.exports\=\[(.*)\]\},207:function\(e,t\)',res.text)
+raw_data = re.findall(r'206:function\(e,t\)\{e\.exports\=(.*)\},207:function\(e,t\)',res.text)
 
 # write raw_data
 raw_file = open('./data/raw_data.json', 'w')
