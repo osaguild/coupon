@@ -1,11 +1,24 @@
 # saitama-premium
 
-## Description
+## Project setup
+```
+npm install
+```
 
-The website that is easy to use [saitama-premium-search.com](https://saitama-premium-search.com/)
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-## What I can do
+### Compiles and minifies for production
+```
+npm run build
+```
 
-- [ ] Get merchant info from origin site
-- [ ] Make merchant info more searchable
-- [ ] TBD
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
