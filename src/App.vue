@@ -1,15 +1,15 @@
 <template>
   <div>
-    {{data}}
+    {{merchant}}
   </div>
 </template>
 
 <script>
-import Data from "../data/merchant_data.json"
+import Merchant from "../data/merchant.json"
 export default {
   data() {
     return {
-      data: Data
+      merchant: Merchant,
     }
   }
 }
