@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Data from "../data/formatted_data.json"
+import Data from "../data/merchant_data.json"
 export default {
   data() {
     return {
