@@ -23,6 +23,6 @@ _format = json.loads(
 )
 
 # write merchant data
-file_o = open('./data/merchant.json', 'w')
-print(json.dumps(_format, indent=2), file=file_o)
+file_o = open('./data/merchant.json', 'w', encoding='utf-8')
+print(json.dumps(_format, ensure_ascii=False, indent=2), file=file_o)
 file_o.close()
