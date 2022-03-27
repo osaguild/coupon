@@ -7,13 +7,19 @@
       </tr>
       <tr>
         <th>all</th>
-        <th>{{summary.all}}</th>
+        <th>{{ summary.all }}</th>
       </tr>
-      <tr v-for="paper_electronic in summary.paper_electronic" :key="paper_electronic.name">
+      <tr
+        v-for="paper_electronic in summary.paper_electronic"
+        :key="paper_electronic.name"
+      >
         <td v-text="paper_electronic.name"></td>
         <td v-text="paper_electronic.count"></td>
       </tr>
-      <tr v-for="private_common in summary.private_common" :key="private_common.name">
+      <tr
+        v-for="private_common in summary.private_common"
+        :key="private_common.name"
+      >
         <td v-text="private_common.name"></td>
         <td v-text="private_common.count"></td>
       </tr>
@@ -25,7 +31,7 @@
         <td v-text="category.name"></td>
         <td v-text="category.count"></td>
       </tr>
-    </table>    
+    </table>
   </div>
   <div>
     area :
@@ -131,7 +137,9 @@ export default {
           for (var j in this.merchants[i].ticket) {
             if (this.merchants[i].ticket[j] == this.selected_paper_electronic) {
               has_pe = true;
-            } else if (this.merchants[i].ticket[j] == this.selected_private_common) {
+            } else if (
+              this.merchants[i].ticket[j] == this.selected_private_common
+            ) {
               has_pc = true;
             }
           }
