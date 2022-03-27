@@ -126,29 +126,60 @@ export default {
   },
   computed: {
     filteredMerchants: function () {
-      var _merchants = [];
-      for (var i in this.merchants) {
-        if (
-          this.merchants[i].category == this.selected_category &&
-          this.merchants[i].address.indexOf(this.selected_area) > -1
-        ) {
-          var has_pe = false;
-          var has_pc = false;
-          for (var j in this.merchants[i].ticket) {
-            if (this.merchants[i].ticket[j] == this.selected_paper_electronic) {
-              has_pe = true;
-            } else if (
-              this.merchants[i].ticket[j] == this.selected_private_common
-            ) {
-              has_pc = true;
+      var _mi = this.merchants;
+      var _mo = [];
+      var i = 0;
+      var j = 0;
+
+      // search area
+      if (this.selected_area != null) {
+        for (i in _mi) {
+          if (_mi[i].address.indexOf(this.selected_area) > -1) {
+            _mo.push(_mi[i]);
+          }
+        }
+        _mi = _mo;
+      }
+      // search category
+      if (this.selected_category != null) {
+        _mo = [];
+        i = 0;
+        for (i in _mi) {
+          if (_mi[i].category == this.selected_category) {
+            _mo.push(_mi[i]);
+          }
+        }
+        _mi = _mo;
+      }
+      // search paper_electronic
+      if (this.selected_paper_electronic != null) {
+        _mo = [];
+        i = 0;
+        j = 0;
+        for (i in _mi) {
+          for (j in _mi[i].ticket) {
+            if (_mi[i].ticket[j] == this.selected_paper_electronic) {
+              _mo.push(_mi[i]);
             }
           }
-          if (has_pe == true && has_pc == true) {
-            _merchants.push(this.merchants[i]);
+        }
+        _mi = _mo;
+      }
+      // search private_common
+      if (this.selected_private_common != null) {
+        _mo = [];
+        i = 0;
+        j = 0;
+        for (i in _mi) {
+          for (j in _mi[i].ticket) {
+            if (_mi[i].ticket[j] == this.selected_private_common) {
+              _mo.push(_mi[i]);
+            }
           }
         }
       }
-      return _merchants;
+      console.log(_mo);
+      return _mo;
     },
   },
 };
