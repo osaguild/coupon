@@ -16,46 +16,46 @@ _json = dict()
 _json['all'] = str(len(merchants))
 
 # paper_electronic count
-_json_pe = dict()
+_list = list()
 for paper_electronic in tikect_types["paper_electronic"]:
-  _count_pe = 0
+  _count = 0
   for merchant in merchants:
     for ticket in merchant["ticket"]:
       if ticket == paper_electronic:
-        _count_pe+=1
-  _json_pe[paper_electronic] = str(_count_pe)
-_json['paper_electronic'] = _json_pe
+        _count+=1
+  _list.append(dict(name=paper_electronic,count=str(_count)))
+_json['paper_electronic'] = _list
 
 # private_common count
-_json_pc = dict()
+_list = list()
 for private_common in tikect_types["private_common"]:
-  _count_pc = 0
+  _count = 0
   for merchant in merchants:
     for ticket in merchant["ticket"]:
       if ticket == private_common:
-        _count_pc+=1
-  _json_pc[private_common] = str(_count_pc)
-_json['private_common'] = _json_pc
+        _count+=1
+  _list.append(dict(name=private_common,count=str(_count)))
+_json['private_common'] = _list
 
 # area count
-_json_a = dict()
+_list = list()
 for area in areas:
-  _count_a = 0
+  _count = 0
   for merchant in merchants:
     if area in merchant["address"]:
-      _count_a+=1
-  _json_a[area] = str(_count_a)
-_json['area'] = _json_a
+      _count+=1
+  _list.append(dict(name=area,count=str(_count)))
+_json['area'] = _list
 
 # category count
-_json_c = dict()
+_list = list()
 for category in categorys:
-  _count_c = 0
+  _count = 0
   for merchant in merchants:
     if category == merchant["category"]:
-      _count_c+=1
-  _json_c[category] = str(_count_c)
-_json['category'] = _json_c
+      _count+=1
+  _list.append(dict(name=category,count=str(_count)))
+_json['category'] = _list
 
 # write data
 file_o = open('./data/summary_all.json', 'w', encoding='utf-8')
