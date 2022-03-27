@@ -36,6 +36,7 @@
   <div>
     area :
     <select v-model="selected_area">
+      <option value="ALL">ALL</option>
       <option v-for="area in areas" :key="area">
         {{ area }}
       </option>
@@ -45,6 +46,7 @@
   <div>
     category :
     <select v-model="selected_category">
+      <option value="ALL">ALL</option>
       <option v-for="category in categorys" :key="category">
         {{ category }}
       </option>
@@ -57,6 +59,7 @@
   <div>
     paper_electronic :
     <select v-model="selected_paper_electronic">
+      <option value="ALL">ALL</option>
       <option
         v-for="paper_electronic in paper_electronics"
         :key="paper_electronic"
@@ -72,6 +75,7 @@
   <div>
     private_common :
     <select v-model="selected_private_common">
+      <option value="ALL">ALL</option>
       <option v-for="private_common in private_commons" :key="private_common">
         {{ private_common }}
       </option>
@@ -132,7 +136,7 @@ export default {
       var j = 0;
 
       // search area
-      if (this.selected_area != null) {
+      if (this.selected_area != null && this.selected_area != "ALL") {
         for (i in _mi) {
           if (_mi[i].address.indexOf(this.selected_area) > -1) {
             _mo.push(_mi[i]);
@@ -141,7 +145,7 @@ export default {
         _mi = _mo;
       }
       // search category
-      if (this.selected_category != null) {
+      if (this.selected_category != null && this.selected_category != "ALL") {
         _mo = [];
         i = 0;
         for (i in _mi) {
@@ -152,7 +156,10 @@ export default {
         _mi = _mo;
       }
       // search paper_electronic
-      if (this.selected_paper_electronic != null) {
+      if (
+        this.selected_paper_electronic != null &&
+        this.selected_paper_electronic != "ALL"
+      ) {
         _mo = [];
         i = 0;
         j = 0;
@@ -166,7 +173,10 @@ export default {
         _mi = _mo;
       }
       // search private_common
-      if (this.selected_private_common != null) {
+      if (
+        this.selected_private_common != null &&
+        this.selected_private_common != "ALL"
+      ) {
         _mo = [];
         i = 0;
         j = 0;
