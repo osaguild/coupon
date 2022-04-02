@@ -1,74 +1,49 @@
 <template>
-  <div>
-    <p>search page</p>
-    <div>
-      area :
-      <select v-model="selected_area">
-        <option value="ALL">ALL</option>
-        <option v-for="area in areas" :key="area">
-          {{ area }}
-        </option>
-      </select>
-    </div>
-    <div>
-      category :
-      <select v-model="selected_category">
-        <option value="ALL">ALL</option>
-        <option v-for="category in categorys" :key="category">
-          {{ category }}
-        </option>
-        {{
-          selected_category
-        }}
-      </select>
-    </div>
-    <div>
-      paper_electronic :
-      <select v-model="selected_paper_electronic">
-        <option value="ALL">ALL</option>
-        <option
-          v-for="paper_electronic in paper_electronics"
-          :key="paper_electronic"
-        >
-          {{ paper_electronic }}
-        </option>
-        {{
-          selected_paper_electronic
-        }}
-      </select>
-    </div>
-    <div>
-      private_common :
-      <select v-model="selected_private_common">
-        <option value="ALL">ALL</option>
-        <option v-for="private_common in private_commons" :key="private_common">
-          {{ private_common }}
-        </option>
-        {{
-          selected_private_common
-        }}
-      </select>
-    </div>
-    <div>
-      <p>count: {{ filteredMerchants.length }}</p>
-      <table>
-        <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>category</th>
-          <th>address</th>
-          <th>ticket</th>
-        </tr>
-        <tr v-for="merchant in filteredMerchants" :key="merchant.id">
-          <td v-text="merchant.id"></td>
-          <td v-text="merchant.name"></td>
-          <td v-text="merchant.category"></td>
-          <td v-text="merchant.address"></td>
-          <td v-text="merchant.ticket"></td>
-        </tr>
-      </table>
-    </div>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-select
+          :items="areas"
+          label="Area"
+          v-model="selected_area"
+        ></v-select>
+      </v-col>
+      <v-col>
+        <v-select
+          :items="categorys"
+          label="Category"
+          v-model="selected_category"
+        ></v-select>
+      </v-col>
+      <v-col>
+        <v-select
+          :items="paper_electronics"
+          label="Paper / Electronic"
+          v-model="selected_paper_electronic"
+        ></v-select>
+      </v-col>
+      <v-col>
+        <v-select
+          :items="private_commons"
+          label="Private / Common"
+          v-model="selected_private_common"
+        ></v-select>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col> count: {{ filteredMerchants.length }} </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-data-table
+          :headers="headers"
+          :items="filteredMerchants"
+          hide-default-footer
+          class="elevation-1"
+        ></v-data-table>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -76,7 +51,6 @@ import Merchant from "../../data/merchant.json";
 import Area from "../../data/area.json";
 import Category from "../../data/category.json";
 import TicketType from "../../data/ticket_type.json";
-import Summary from "../../data/summary_all.json";
 
 export default {
   name: "SearchPage",
@@ -85,13 +59,19 @@ export default {
       merchants: Merchant,
       areas: Area,
       categorys: Category,
-      summary: Summary,
       paper_electronics: TicketType.paper_electronic,
       private_commons: TicketType.private_common,
       selected_area: null,
       selected_category: null,
       selected_paper_electronic: null,
       selected_private_common: null,
+      headers: [
+        { text: "Id", align: "start", sortable: false, value: "id" },
+        { text: "Name", value: "name" },
+        { text: "Category", value: "category" },
+        { text: "Address", value: "address" },
+        { text: "Ticket", value: "ticket" },
+      ],
     };
   },
   computed: {

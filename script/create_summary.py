@@ -13,7 +13,9 @@ with open('./data/ticket_type.json', 'r', encoding='utf-8') as rt:
 _json = dict()
 
 # all count
-_json['all'] = str(len(merchants))
+_list = list()
+_list.append(dict(name='all',count=str(len(merchants))))
+_json['all'] = _list
 
 # paper_electronic count
 _list = list()

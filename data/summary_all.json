@@ -1,5 +1,10 @@
 {
-  "all": "3709",
+  "all": [
+    {
+      "name": "all",
+      "count": "3709"
+    }
+  ],
   "paper_electronic": [
     {
       "name": "紙券",
