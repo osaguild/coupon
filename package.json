@@ -5,7 +5,14 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy-dev": "run-s lint build python:venv python:activate python:pip deploy:dev",
+    "deploy-prd": "run-s lint build python:venv python:activate python:pip deploy:prd",
+    "python:venv": "python3 -m venv .env",
+    "python:activate": "source .env/bin/activate",
+    "python:pip": "pip install -r requirements.txt",
+    "deploy:dev": "cdk deploy saitama-premium-dev --require-approval never",
+    "deploy:prd": "cdk deploy saitama-premium-prd --require-approval never"
   },
   "dependencies": {
     "core-js": "^3.8.3",

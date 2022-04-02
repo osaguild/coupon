@@ -1,0 +1,17 @@
+{
+  "app": "python3 app.py",
+  "context": {
+      "prd": {
+          "TARGET": "prd",
+          "DOMAIN": "osaguild.com",
+          "FRONT_DOMAIN": "saitama-premium.osaguild.com",
+          "CERTIFICATE_DOMAIN": "*.osaguild.com"    
+      },
+      "dev": {
+          "TARGET": "dev",
+          "DOMAIN": "dev.osaguild.com",
+          "FRONT_DOMAIN": "saitama-premium.dev.osaguild.com",
+          "CERTIFICATE_DOMAIN": "*.dev.osaguild.com"
+      }
+  }
+}

@@ -20,5 +20,16 @@ npm run build
 npm run lint
 ```
 
+### Deploy
+#### dev
+```
+npm run deploy-dev
+```
+#### prd
+```
+npm run deploy-prd
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
