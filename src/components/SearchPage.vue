@@ -1,71 +1,73 @@
 <template>
-  <p>search page</p>
   <div>
-    area :
-    <select v-model="selected_area">
-      <option value="ALL">ALL</option>
-      <option v-for="area in areas" :key="area">
-        {{ area }}
-      </option>
-    </select>
-  </div>
-  <div>
-    category :
-    <select v-model="selected_category">
-      <option value="ALL">ALL</option>
-      <option v-for="category in categorys" :key="category">
-        {{ category }}
-      </option>
-      {{
-        selected_category
-      }}
-    </select>
-  </div>
-  <div>
-    paper_electronic :
-    <select v-model="selected_paper_electronic">
-      <option value="ALL">ALL</option>
-      <option
-        v-for="paper_electronic in paper_electronics"
-        :key="paper_electronic"
-      >
-        {{ paper_electronic }}
-      </option>
-      {{
-        selected_paper_electronic
-      }}
-    </select>
-  </div>
-  <div>
-    private_common :
-    <select v-model="selected_private_common">
-      <option value="ALL">ALL</option>
-      <option v-for="private_common in private_commons" :key="private_common">
-        {{ private_common }}
-      </option>
-      {{
-        selected_private_common
-      }}
-    </select>
-  </div>
-  <div>
-    <p>count: {{ filteredMerchants.length }}</p>
-    <table>
-      <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>category</th>
-        <th>address</th>
-        <th>ticket</th>
-      </tr>
-      <tr v-for="merchant in filteredMerchants" :key="merchant.id">
-        <td v-text="merchant.id"></td>
-        <td v-text="merchant.name"></td>
-        <td v-text="merchant.category"></td>
-        <td v-text="merchant.address"></td>
-        <td v-text="merchant.ticket"></td>
-      </tr>
-    </table>
+    <p>search page</p>
+    <div>
+      area :
+      <select v-model="selected_area">
+        <option value="ALL">ALL</option>
+        <option v-for="area in areas" :key="area">
+          {{ area }}
+        </option>
+      </select>
+    </div>
+    <div>
+      category :
+      <select v-model="selected_category">
+        <option value="ALL">ALL</option>
+        <option v-for="category in categorys" :key="category">
+          {{ category }}
+        </option>
+        {{
+          selected_category
+        }}
+      </select>
+    </div>
+    <div>
+      paper_electronic :
+      <select v-model="selected_paper_electronic">
+        <option value="ALL">ALL</option>
+        <option
+          v-for="paper_electronic in paper_electronics"
+          :key="paper_electronic"
+        >
+          {{ paper_electronic }}
+        </option>
+        {{
+          selected_paper_electronic
+        }}
+      </select>
+    </div>
+    <div>
+      private_common :
+      <select v-model="selected_private_common">
+        <option value="ALL">ALL</option>
+        <option v-for="private_common in private_commons" :key="private_common">
+          {{ private_common }}
+        </option>
+        {{
+          selected_private_common
+        }}
+      </select>
+    </div>
+    <div>
+      <p>count: {{ filteredMerchants.length }}</p>
+      <table>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>category</th>
+          <th>address</th>
+          <th>ticket</th>
+        </tr>
+        <tr v-for="merchant in filteredMerchants" :key="merchant.id">
+          <td v-text="merchant.id"></td>
+          <td v-text="merchant.name"></td>
+          <td v-text="merchant.category"></td>
+          <td v-text="merchant.address"></td>
+          <td v-text="merchant.ticket"></td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 

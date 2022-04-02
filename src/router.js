@@ -1,14 +1,15 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Search from './components/SearchPage.vue';
-import List from './components/ListPage.vue';
+import Vue from 'vue'
+import Router from 'vue-router'
+import Search from './components/SearchPage.vue'
+import List from './components/ListPage.vue'
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    { path: '/', redirect: '/list' },
-    { name: 'search', path: '/search', component: Search },
-    { name: 'list', path: '/list', component: List }
-  ],
-});
+Vue.use(Router)
 
-export default router;
+export default new Router({
+    mode: 'history',
+    routes: [
+        { path: '/', redirect: '/list' },
+        { path: '/search', component: Search },
+        { path: '/list', component: List }
+    ]
+})
