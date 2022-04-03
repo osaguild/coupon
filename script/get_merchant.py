@@ -22,6 +22,12 @@ _format = json.loads(
     .replace('name:', '"name":')
 )
 
+# add lat and lng
+for merchant in _format:
+    res = requests.get('https://msearch.gsi.go.jp/address-search/AddressSearch?q=' + merchant['address'])
+    merchant['lat'] = str(res.json()[0]['geometry']['coordinates'][1])
+    merchant['lng'] = str(res.json()[0]['geometry']['coordinates'][0])
+
 # write merchant data
 file_o = open('./data/merchant.json', 'w', encoding='utf-8')
 print(json.dumps(_format, ensure_ascii=False, indent=2), file=file_o)
