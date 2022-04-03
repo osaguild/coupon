@@ -6,7 +6,7 @@ cdk.out
 cdk.context.json
 
 # env files
-.env
+.env*
 
 # Log files
 npm-debug.log*
