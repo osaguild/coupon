@@ -36,7 +36,7 @@
           :center="{ lat: 35.890859, lng: 139.615088 }"
           :zoom="12"
           map-type-id="terrain"
-          style="width: 500px; height: 300px"
+          style="width: 100%; height: 500px"
         >
           <GmapInfoWindow
             :options="infoOptions"
@@ -67,6 +67,7 @@
           :items="filteredMerchants"
           hide-default-footer
           class="elevation-1"
+          @click:row="toggleInfoWindow"
         ></v-data-table>
       </v-col>
     </v-row>
