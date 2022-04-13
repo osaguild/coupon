@@ -1,76 +1,63 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <v-select
-          :items="areas"
-          label="Area"
-          v-model="selected_area"
-        ></v-select>
-      </v-col>
-      <v-col>
-        <v-select
-          :items="categorys"
-          label="Category"
-          v-model="selected_category"
-        ></v-select>
-      </v-col>
-      <v-col>
-        <v-select
-          :items="paper_electronics"
-          label="Paper / Electronic"
-          v-model="selected_paper_electronic"
-        ></v-select>
-      </v-col>
-      <v-col>
-        <v-select
-          :items="private_commons"
-          label="Private / Common"
-          v-model="selected_private_common"
-        ></v-select>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <GmapMap
-          :center="{ lat: 35.890859, lng: 139.615088 }"
-          :zoom="12"
-          map-type-id="terrain"
-          style="width: 100%; height: 500px"
-        >
-          <GmapInfoWindow
-            :options="infoOptions"
-            :position="infoWindowPos"
-            :opened="infoWinOpen"
-            @closeclick="infoWinOpen = false"
-          >
-            {{infoDisplay}}
-          </GmapInfoWindow>
-          <GmapMarker
-            :key="index"
-            v-for="(m, index) in filteredMerchants"
-            :position="m.position"
-            :clickable="true"
-            :draggable="false"
-            @click="toggleInfoWindow(m)"
-          />
-        </GmapMap>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col> count: {{ filteredMerchants.length }} </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <v-data-table
-          :headers="headers"
-          :items="filteredMerchants"
-          hide-default-footer
-          class="elevation-1"
-          @click:row="toggleInfoWindow"
-        ></v-data-table>
-      </v-col>
-    </v-row>
+    <v-expansion-panels>
+      <v-expansion-panel>
+        <v-expansion-panel-header> Input Form </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <v-select
+            :items="areas"
+            label="Area"
+            v-model="selected_area"
+          ></v-select>
+          <v-select
+            :items="categorys"
+            label="Category"
+            v-model="selected_category"
+          ></v-select>
+          <v-select
+            :items="paper_electronics"
+            label="Paper / Electronic"
+            v-model="selected_paper_electronic"
+          ></v-select>
+          <v-select
+            :items="private_commons"
+            label="Private / Common"
+            v-model="selected_private_common"
+          ></v-select>
+          <p>count: {{ filteredMerchants.length }}</p>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+    <GmapMap
+      :center="{ lat: 35.890859, lng: 139.615088 }"
+      :zoom="12"
+      map-type-id="terrain"
+      style="width: 100%; height: 500px"
+    >
+      <GmapInfoWindow
+        :options="infoOptions"
+        :position="infoWindowPos"
+        :opened="infoWinOpen"
+        @closeclick="infoWinOpen = false"
+      >
+        {{ infoDisplay }}
+      </GmapInfoWindow>
+      <GmapMarker
+        :key="index"
+        v-for="(m, index) in filteredMerchants"
+        :position="m.position"
+        :clickable="true"
+        :draggable="false"
+        @click="toggleInfoWindow(m)"
+      />
+    </GmapMap>
+    <v-data-table
+      :headers="headers"
+      :items="filteredMerchants"
+      hide-default-footer
+      class="elevation-1"
+      @click:row="toggleInfoWindow"
+    ></v-data-table>
   </v-container>
 </template>
 
