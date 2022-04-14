@@ -16,24 +16,20 @@
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>
-              Search
-            </v-list-item-title>
+            <v-list-item-title> Search </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item  v-on:click="changePage('/list')">
+        <v-list-item v-on:click="changePage('/list')">
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>
-              List
-            </v-list-item-title>
+            <v-list-item-title> List </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app>
+    <v-app-bar>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       Saitama Premium
     </v-app-bar>
@@ -42,7 +38,11 @@
         <router-view></router-view>
       </v-container>
     </v-main>
-    <v-footer app> footer </v-footer>
+    <v-footer padless>
+      <v-col class="text-center" cols="12">
+        <strong>@ {{ new Date().getFullYear() }} osaguild.com</strong>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
