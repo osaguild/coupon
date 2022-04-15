@@ -19,6 +19,8 @@
             <v-list-item-title> Search </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <!-- List is under development -->
+        <!--
         <v-list-item v-on:click="changePage('/list')">
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
@@ -27,6 +29,7 @@
             <v-list-item-title> List </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        -->
       </v-list>
     </v-navigation-drawer>
     <v-app-bar>
