@@ -82,10 +82,8 @@ export default {
       selected_paper_electronic: null,
       selected_private_common: null,
       headers: [
-        { text: "Id", align: "start", sortable: false, value: "id" },
         { text: "Name", value: "name" },
         { text: "Category", value: "category" },
-        { text: "Address", value: "address" },
         { text: "Ticket", value: "ticket" },
       ],
       infoOptions: {
