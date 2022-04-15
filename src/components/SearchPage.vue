@@ -57,6 +57,7 @@
       hide-default-footer
       class="elevation-1"
       @click:row="toggleInfoWindow"
+      disable-sort
     ></v-data-table>
   </v-container>
 </template>
