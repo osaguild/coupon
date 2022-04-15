@@ -54,7 +54,7 @@
     <v-data-table
       :headers="headers"
       :items="filteredMerchants"
-      hide-default-footer
+      :items-per-page="10"
       class="elevation-1"
       @click:row="toggleInfoWindow"
       disable-sort
