@@ -31,7 +31,12 @@
     </v-navigation-drawer>
     <v-app-bar>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      Saitama Premium
+      <v-toolbar-title>Saitama Premium</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn @click="originLink">
+        Origin Site
+        <v-icon> {{launchIcon}} </v-icon>
+      </v-btn>
     </v-app-bar>
     <v-main>
       <v-container fluid>
@@ -47,17 +52,23 @@
 </template>
 
 <script>
+import { mdiLaunch } from '@mdi/js'
+
 export default {
   name: "App",
   data() {
     return {
       drawer: false,
+      launchIcon: mdiLaunch,
     };
   },
   methods: {
     changePage: function (page) {
       this.$router.push(page);
       this.drawer = false;
+    },
+    originLink: function () {
+      window.open("https://saitama-premium-search.com/", "_blank");
     },
   },
 };
