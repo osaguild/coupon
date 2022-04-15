@@ -77,8 +77,8 @@ export default {
       categorys: Category,
       paper_electronics: TicketType.paper_electronic,
       private_commons: TicketType.private_common,
-      selected_area: "西区",
-      selected_category: null,
+      selected_area: "浦和区",
+      selected_category: "飲食店",
       selected_paper_electronic: null,
       selected_private_common: null,
       headers: [
