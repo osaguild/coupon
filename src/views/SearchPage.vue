@@ -24,32 +24,24 @@
         @click="toggleInfoWindow(m)"
       />
     </GmapMap>
-    <v-data-table
-      :headers="headers"
-      :items="filteredMerchants"
-      :items-per-page="10"
-      class="elevation-1"
-      @click:row="toggleInfoWindow"
-      disable-sort
-    ></v-data-table>
+    <merchant-table
+      :param="filteredMerchants"
+      @update:info="toggleInfoWindow($event)"
+    ></merchant-table>
   </v-container>
 </template>
 
 <script>
+import MerchantTable from "@/components/MerchantTable.vue";
 import Merchant from "../../data/merchant.json";
 import SearchForm from "../components/SearchForm.vue";
 
 export default {
-  components: { SearchForm },
+  components: { SearchForm, MerchantTable },
   name: "SearchPage",
   data() {
     return {
       merchants: Merchant,
-      headers: [
-        { text: "Name", value: "name" },
-        { text: "Category", value: "category" },
-        { text: "Ticket", value: "ticket" },
-      ],
       infoOptions: {
         pixelOffset: {
           width: 0,
@@ -75,20 +67,20 @@ export default {
       var j = 0;
 
       // search area
-      if (this.selected_area != null && this.selected_area != "ALL") {
+      if (this.form.area != null && this.form.area != "ALL") {
         for (i in _mi) {
-          if (_mi[i].address.indexOf(this.selected_area) > -1) {
+          if (_mi[i].address.indexOf(this.form.area) > -1) {
             _mo.push(_mi[i]);
           }
         }
         _mi = _mo;
       }
       // search category
-      if (this.selected_category != null && this.selected_category != "ALL") {
+      if (this.form.category != null && this.form.category != "ALL") {
         _mo = [];
         i = 0;
         for (i in _mi) {
-          if (_mi[i].category == this.selected_category) {
+          if (_mi[i].category == this.form.category) {
             _mo.push(_mi[i]);
           }
         }
@@ -96,15 +88,15 @@ export default {
       }
       // search paper_electronic
       if (
-        this.selected_paper_electronic != null &&
-        this.selected_paper_electronic != "ALL"
+        this.form.paper_electronic != null &&
+        this.form.paper_electronic != "ALL"
       ) {
         _mo = [];
         i = 0;
         j = 0;
         for (i in _mi) {
           for (j in _mi[i].ticket) {
-            if (_mi[i].ticket[j] == this.selected_paper_electronic) {
+            if (_mi[i].ticket[j] == this.form.paper_electronic) {
               _mo.push(_mi[i]);
             }
           }
