@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="show" absolute temporary>
+  <v-navigation-drawer v-model="drawer" absolute temporary>
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="text-h6"> Menu </v-list-item-title>
@@ -36,19 +36,19 @@ import { mdiMagnify } from "@mdi/js";
 
 export default {
   name: "MyNavigation",
-  props: ["drawer"],
+  props: ["param"],
   data() {
     return {
       searchIcon: mdiMagnify,
     };
   },
   computed: {
-    show: {
+    drawer: {
       get() {
-        return this.drawer;
+        return this.param;
       },
-      set(show) {
-        this.$emit("update:drawer", show);
+      set(drawer) {
+        this.$emit("update:drawer", drawer);
       },
     },
   },
@@ -57,7 +57,7 @@ export default {
       if (this.$route.path !== page) {
         this.$router.push(page);
       }
-      this.show = false;
+      this.drawer = false;
     },
   },
 };

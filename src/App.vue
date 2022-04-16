@@ -2,7 +2,7 @@
   <v-app>
     <my-header @update:drawer="drawer = true"></my-header>
     <my-navigation
-      :drawer="drawer"
+      :param="drawer"
       @update:drawer="drawer = $event"
     ></my-navigation>
     <v-main>
