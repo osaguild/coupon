@@ -1,29 +1,7 @@
 <template>
   <v-container>
     <search-form :param="form" @update:form="form = $event"></search-form>
-    <GmapMap
-      :center="{ lat: 35.890859, lng: 139.615088 }"
-      :zoom="12"
-      map-type-id="terrain"
-      style="width: 100%; height: 500px"
-    >
-      <GmapInfoWindow
-        :options="info.options"
-        :position="info.windowPos"
-        :opened="info.winOpen"
-        @closeclick="info.winOpen = false"
-      >
-        {{ info.display }}
-      </GmapInfoWindow>
-      <GmapMarker
-        :key="index"
-        v-for="(m, index) in filteredMerchants"
-        :position="m.position"
-        :clickable="true"
-        :draggable="false"
-        @click="toggleInfoWindow(m)"
-      />
-    </GmapMap>
+    <my-map :markers="filteredMerchants"></my-map>
     <merchant-table
       :param="filteredMerchants"
       @update:info="toggleInfoWindow($event)"
@@ -34,25 +12,15 @@
 <script>
 import MerchantTable from "@/components/MerchantTable.vue";
 import Merchant from "../../data/merchant.json";
-import SearchForm from "../components/SearchForm.vue";
+import SearchForm from "@/components/SearchForm.vue";
+import MyMap from "@/components/MyMap.vue";
 
 export default {
-  components: { SearchForm, MerchantTable },
+  components: { SearchForm, MerchantTable, MyMap },
   name: "SearchPage",
   data() {
     return {
       merchants: Merchant,
-      info: {
-        windowPos: null,
-        winOpen: true,
-        display: "",
-        options: {
-          pixelOffset: {
-            width: 0,
-            height: -35,
-          },
-        },
-      },
       form: {
         area: "浦和区",
         category: "飲食店",
@@ -123,13 +91,6 @@ export default {
       }
       _mo.position;
       return _mo;
-    },
-  },
-  methods: {
-    toggleInfoWindow(marker) {
-      this.info.windowPos = marker.position;
-      this.info.winOpen = true;
-      this.info.display = marker.name;
     },
   },
 };
