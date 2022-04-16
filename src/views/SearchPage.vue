@@ -1,33 +1,6 @@
 <template>
   <v-container>
-    <v-expansion-panels>
-      <v-expansion-panel>
-        <v-expansion-panel-header> Input Form </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <v-select
-            :items="areas"
-            label="Area"
-            v-model="selected_area"
-          ></v-select>
-          <v-select
-            :items="categorys"
-            label="Category"
-            v-model="selected_category"
-          ></v-select>
-          <v-select
-            :items="paper_electronics"
-            label="Paper / Electronic"
-            v-model="selected_paper_electronic"
-          ></v-select>
-          <v-select
-            :items="private_commons"
-            label="Private / Common"
-            v-model="selected_private_common"
-          ></v-select>
-          <p>count: {{ filteredMerchants.length }}</p>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
+    <search-form :param="form" @update:form="form = $event"></search-form>
     <GmapMap
       :center="{ lat: 35.890859, lng: 139.615088 }"
       :zoom="12"
@@ -64,23 +37,14 @@
 
 <script>
 import Merchant from "../../data/merchant.json";
-import Area from "../../data/area.json";
-import Category from "../../data/category.json";
-import TicketType from "../../data/ticket_type.json";
+import SearchForm from "../components/SearchForm.vue";
 
 export default {
+  components: { SearchForm },
   name: "SearchPage",
   data() {
     return {
       merchants: Merchant,
-      areas: Area,
-      categorys: Category,
-      paper_electronics: TicketType.paper_electronic,
-      private_commons: TicketType.private_common,
-      selected_area: "浦和区",
-      selected_category: "飲食店",
-      selected_paper_electronic: null,
-      selected_private_common: null,
       headers: [
         { text: "Name", value: "name" },
         { text: "Category", value: "category" },
@@ -95,6 +59,12 @@ export default {
       infoWindowPos: null,
       infoWinOpen: true,
       infoDisplay: "",
+      form: {
+        area: "浦和区",
+        category: "飲食店",
+        paper_electronic: null,
+        private_common: null,
+      },
     };
   },
   computed: {
