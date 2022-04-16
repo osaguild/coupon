@@ -8,12 +8,12 @@
       style="width: 100%; height: 500px"
     >
       <GmapInfoWindow
-        :options="infoOptions"
-        :position="infoWindowPos"
-        :opened="infoWinOpen"
-        @closeclick="infoWinOpen = false"
+        :options="info.options"
+        :position="info.windowPos"
+        :opened="info.winOpen"
+        @closeclick="info.winOpen = false"
       >
-        {{ infoDisplay }}
+        {{ info.display }}
       </GmapInfoWindow>
       <GmapMarker
         :key="index"
@@ -42,15 +42,17 @@ export default {
   data() {
     return {
       merchants: Merchant,
-      infoOptions: {
-        pixelOffset: {
-          width: 0,
-          height: -35,
+      info: {
+        windowPos: null,
+        winOpen: true,
+        display: "",
+        options: {
+          pixelOffset: {
+            width: 0,
+            height: -35,
+          },
         },
       },
-      infoWindowPos: null,
-      infoWinOpen: true,
-      infoDisplay: "",
       form: {
         area: "浦和区",
         category: "飲食店",
@@ -125,9 +127,9 @@ export default {
   },
   methods: {
     toggleInfoWindow(marker) {
-      this.infoWindowPos = marker.position;
-      this.infoWinOpen = true;
-      this.infoDisplay = marker.name;
+      this.info.windowPos = marker.position;
+      this.info.winOpen = true;
+      this.info.display = marker.name;
     },
   },
 };
