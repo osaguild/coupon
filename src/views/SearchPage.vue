@@ -11,9 +11,9 @@
 
 <script>
 import MerchantTable from "@/components/MerchantTable.vue";
-import Merchant from "../../data/merchant.json";
 import SearchForm from "@/components/SearchForm.vue";
 import MyMap from "@/components/MyMap.vue";
+import Merchant from "../../data/merchant.json";
 
 export default {
   components: { SearchForm, MerchantTable, MyMap },

@@ -13,16 +13,16 @@
 </template>
 
 <script>
-import MyFooter from "./components/MyFooter.vue";
 import MyHeader from "./components/MyHeader.vue";
 import MyNavigation from "./components/MyNavigation.vue";
+import MyFooter from "./components/MyFooter.vue";
 
 export default {
   name: "App",
   components: {
     MyHeader,
-    MyFooter,
     MyNavigation,
+    MyFooter,
   },
   data() {
     return {
