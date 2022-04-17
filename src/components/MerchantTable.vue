@@ -4,7 +4,6 @@
     :items="merchants"
     :items-per-page="10"
     class="elevation-1"
-    @click:row="selected"
     disable-sort
   ></v-data-table>
 </template>
@@ -27,11 +26,6 @@ export default {
       get() {
         return this.param;
       },
-    },
-  },
-  methods: {
-    selected(merchant) {
-      this.$emit("update:info", merchant);
     },
   },
 };

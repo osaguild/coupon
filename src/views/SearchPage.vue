@@ -1,10 +1,9 @@
 <template>
   <v-container>
     <search-form :param="form" @update:form="form = $event"></search-form>
-    <my-map :markers="merchants"></my-map>
+    <my-map :markers="getMerchants"></my-map>
     <merchant-table
-      :param="merchants"
-      @update:info="toggleInfoWindow($event)"
+      :param="getMerchants"
     ></merchant-table>
   </v-container>
 </template>
@@ -29,9 +28,9 @@ export default {
     };
   },
   computed: {
-    merchants: function() {
+    getMerchants: function () {
       return Merchant.search(this.form);
     },
-  }
+  },
 };
 </script>
