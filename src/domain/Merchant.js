@@ -1,26 +1,26 @@
-import data from "../../data/merchant.json";
+import merchants from "../../data/merchant.json";
 
-function search(area, category, paper_electronic, private_common) {
-  var _mi = data;
-  var _mo = [];
-  var i = 0;
-  var j = 0;
+function search(form) {
+  let _mi = merchants;
+  let _mo = [];
+  let i = 0;
+  let j = 0;
 
   // search area
-  if (area != null && area != "ALL") {
+  if (form.area != null && form.area != "ALL") {
     for (i in _mi) {
-      if (_mi[i].address.indexOf(area) > -1) {
+      if (_mi[i].address.indexOf(form.area) > -1) {
         _mo.push(_mi[i]);
       }
     }
     _mi = _mo;
   }
   // search category
-  if (category != null && category != "ALL") {
+  if (form.category != null && form.category != "ALL") {
     _mo = [];
     i = 0;
     for (i in _mi) {
-      if (_mi[i].category == category) {
+      if (_mi[i].category == form.category) {
         _mo.push(_mi[i]);
       }
     }
@@ -28,15 +28,15 @@ function search(area, category, paper_electronic, private_common) {
   }
   // search paper_electronic
   if (
-    paper_electronic != null &&
-    paper_electronic != "ALL"
+    form.paper_electronic != null &&
+    form.paper_electronic != "ALL"
   ) {
     _mo = [];
     i = 0;
     j = 0;
     for (i in _mi) {
       for (j in _mi[i].ticket) {
-        if (_mi[i].ticket[j] == paper_electronic) {
+        if (_mi[i].ticket[j] == form.paper_electronic) {
           _mo.push(_mi[i]);
         }
       }
@@ -45,15 +45,15 @@ function search(area, category, paper_electronic, private_common) {
   }
   // search private_common
   if (
-    private_common != null &&
-    private_common != "ALL"
+    form.private_common != null &&
+    form.private_common != "ALL"
   ) {
     _mo = [];
     i = 0;
     j = 0;
     for (i in _mi) {
       for (j in _mi[i].ticket) {
-        if (_mi[i].ticket[j] == private_common) {
+        if (_mi[i].ticket[j] == form.private_common) {
           _mo.push(_mi[i]);
         }
       }

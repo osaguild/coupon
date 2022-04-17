@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     merchants: function() {
-      return Merchant.search(this.form.area, this.form.category, this.form.paper_electronic, this.form.private_common);
+      return Merchant.search(this.form);
     },
   }
 };
