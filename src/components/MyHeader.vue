@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar>
+  <v-app-bar app>
     <v-app-bar-nav-icon @click="showNavigation"></v-app-bar-nav-icon>
     <v-toolbar-title>Saitama Premium</v-toolbar-title>
     <v-spacer></v-spacer>
