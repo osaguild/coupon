@@ -22,7 +22,6 @@
     "deploy:prd": "cdk deploy saitama-premium-prd --require-approval never"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.22.0",
     "constructs": "^10.0.127",
     "core-js": "^3.8.3",
     "gmap-vue": "^3.5.2",
@@ -32,6 +31,14 @@
     "vuetify": "^2.6.0"
   },
   "devDependencies": {
+    "@aws-cdk/aws-certificatemanager": "^1.100.0",
+    "@aws-cdk/aws-cloudfront": "^1.100.0",
+    "@aws-cdk/aws-iam": "^1.100.0",
+    "@aws-cdk/aws-route53": "^1.100.0",
+    "@aws-cdk/aws-route53-targets": "^1.100.0",
+    "@aws-cdk/aws-s3": "^1.100.0",
+    "@aws-cdk/aws-s3-deployment": "^1.100.0",
+    "@aws-cdk/core": "^1.100.0",
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@mdi/js": "^6.6.96",
@@ -40,7 +47,7 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "aws-cdk": "^2.22.0",
+    "aws-cdk": "^1.100.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
     "jest": "^27.5.1",
