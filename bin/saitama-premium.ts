@@ -4,7 +4,9 @@ import * as cdk from '@aws-cdk/core';
 import { SaitamaPremiumStack } from '../lib/saitama-premium-stack';
 
 const app = new cdk.App();
-new SaitamaPremiumStack(app, 'saitama-premium-dev', {
+const appName = "saitama-premium-" + app.node.tryGetContext('target');
+
+new SaitamaPremiumStack(app, appName, {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */

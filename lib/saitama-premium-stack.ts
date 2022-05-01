@@ -12,10 +12,8 @@ export class SaitamaPremiumStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const TARGET = "dev";
-    const DOMAIN = "dev.osaguild.com";
-    const FRONT_DOMAIN = "saitama-premium.dev.osaguild.com";
-    const CERTIFICATE_DOMAIN = "*.dev.osaguild.com";
+    const target = scope.node.tryGetContext('target');
+    const context = scope.node.tryGetContext(target);
 
     // s3 bucket
     const bucket = new s3.Bucket(
@@ -23,13 +21,13 @@ export class SaitamaPremiumStack extends Stack {
       websiteIndexDocument: "index.html",
       accessControl: s3.BucketAccessControl.PRIVATE,
       removalPolicy: RemovalPolicy.DESTROY,
-      bucketName: `saitama-premium-bucket-${TARGET}`,
+      bucketName: `saitama-premium-bucket-${target}`,
     });
 
     // s3 access identity
     const identity = new cloudfront.OriginAccessIdentity(
       this, "saitama-premium-origin-access-identity", {
-      comment: `s3 access identity ${TARGET}`,
+      comment: `s3 access identity ${target}`,
     });
 
     // s3 policy statement
@@ -62,8 +60,8 @@ export class SaitamaPremiumStack extends Stack {
     // certificate
     const certificate = new acm.DnsValidatedCertificate(
       this, "certificate", {
-      domainName: CERTIFICATE_DOMAIN,
-      subjectAlternativeNames: [CERTIFICATE_DOMAIN],
+      domainName: context.CERTIFICATE_DOMAIN,
+      subjectAlternativeNames: [context.CERTIFICATE_DOMAIN],
       hostedZone: hostedZone,
       region: "us-east-1",
     });
@@ -86,17 +84,17 @@ export class SaitamaPremiumStack extends Stack {
       }],
       viewerCertificate: cloudfront.ViewerCertificate.fromAcmCertificate(
         certificate, {
-        aliases: [FRONT_DOMAIN],
+        aliases: [context.FRONT_DOMAIN],
         securityPolicy: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2019,
         sslMethod: cloudfront.SSLMethod.SNI
       }),
-      comment: `saitama-premium-front-${TARGET}`,
+      comment: `saitama-premium-front-${target}`,
     });
 
     // A record for front
     const frontARecord = new r53.ARecord(
       this, "front-a-record", {
-      recordName: FRONT_DOMAIN,
+      recordName: context.FRONT_DOMAIN,
       zone: hostedZone,
       target: r53.RecordTarget.fromAlias(
         new r53Targets.CloudFrontTarget(front)
