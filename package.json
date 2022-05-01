@@ -22,8 +22,8 @@
     "python:pip": "pip install -r requirements.txt",
     "python:get-merchant": "python3 script/get_merchant.py",
     "python:create-summary": "python3 script/create_summary.py",
-    "deploy:dev": "cdk deploy --require-approval never",
-    "deploy:prd": "cdk deploy --require-approval never"
+    "deploy:dev": "cdk deploy --c target=dev --require-approval never",
+    "deploy:prd": "cdk deploy --c target=prd --require-approval never"
   },
   "dependencies": {
     "constructs": "^10.0.127",
