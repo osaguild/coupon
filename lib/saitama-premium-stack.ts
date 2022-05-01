@@ -1,12 +1,12 @@
-import { Stack, StackProps, Construct, RemovalPolicy } from '@aws-cdk/core';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as s3Deploy from '@aws-cdk/aws-s3-deployment';
-import * as cloudfront from '@aws-cdk/aws-cloudfront';
-import * as acm from '@aws-cdk/aws-certificatemanager';
-import * as r53 from '@aws-cdk/aws-route53';
-import * as r53Targets from '@aws-cdk/aws-route53-targets';
-import * as iam from '@aws-cdk/aws-iam';
-
+import { Stack, StackProps, RemovalPolicy } from 'aws-cdk-lib';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as s3Deploy from 'aws-cdk-lib/aws-s3-deployment';
+import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
+import * as r53 from 'aws-cdk-lib/aws-route53';
+import * as r53Targets from 'aws-cdk-lib/aws-route53-targets';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import { Construct } from 'constructs';
 
 export class SaitamaPremiumStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
