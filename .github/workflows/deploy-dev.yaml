@@ -21,7 +21,9 @@ jobs:
           sudo apt update
           sudo apt install tree
       - name: Deploy
-        run: npm run deploy-dev
+        run: |
+          npm install
+          npm run deploy-dev
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
