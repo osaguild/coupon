@@ -29,6 +29,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
           VUE_APP_GOOGLE_MAP_API: ${{ secrets.VUE_APP_GOOGLE_MAP_API }}
+          VUE_APP_TARGET: ${{ secrets.VUE_APP_TARGET }}
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@master
         env:
