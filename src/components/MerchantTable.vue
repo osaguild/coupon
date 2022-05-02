@@ -5,7 +5,18 @@
     :items-per-page="10"
     class="elevation-1"
     disable-sort
-  ></v-data-table>
+  >
+    <template v-slot:[`item.category`]="{ item }">
+      <v-chip>
+        {{ item.category }}
+      </v-chip>
+    </template>
+    <template v-slot:[`item.ticket`]="{ item }">
+      <v-chip v-for="ticket in item.ticket" :key="ticket">
+        {{ ticket }}
+      </v-chip>
+    </template>
+  </v-data-table>
 </template>
 
 <script>
