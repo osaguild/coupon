@@ -29,6 +29,8 @@ for merchant in _format:
     merchant['position'] = dict(
         lat=res.json()[0]['geometry']['coordinates'][1],
         lng=res.json()[0]['geometry']['coordinates'][0])
+    merchant['name'] = re.findall(
+        r'【.*】(.*)', merchant['name'])[0]
 
 # write merchant data
 file_o = open('./data/merchant.json', 'w', encoding='utf-8')
