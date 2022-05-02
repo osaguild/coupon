@@ -1,7 +1,8 @@
 <template>
+<div>
   <GmapMap
-    :center="{ lat: 35.890859, lng: 139.615088 }"
-    :zoom="12"
+    :center="center"
+    :zoom="13"
     map-type-id="terrain"
     style="width: 100%; height: 500px"
   >
@@ -22,12 +23,13 @@
       @click="toggleInfoWindow(m)"
     />
   </GmapMap>
+  </div>
 </template>
 
 <script>
 export default {
   name: "MyMap",
-  props: ["markers"],
+  props: ["markers", "center"],
   data() {
     return {
       position: null,
