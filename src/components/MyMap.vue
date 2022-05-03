@@ -12,7 +12,7 @@
       :opened="opened"
       @closeclick="opened = false"
     >
-      {{ text }}
+      <a :href="url" target="_blank">{{ name }}</a>
     </GmapInfoWindow>
     <GmapMarker
       :key="index"
@@ -27,13 +27,16 @@
 </template>
 
 <script>
+import Taberogu from "@/domain/Taberogu.js";
+
 export default {
   name: "MyMap",
   props: ["markers", "center"],
   data() {
     return {
       position: null,
-      text: null,
+      name: null,
+      url: null,
       opened: false,
       options: {
         pixelOffset: {
@@ -44,9 +47,11 @@ export default {
     };
   },
   methods: {
-    toggleInfoWindow(marker) {
+    async toggleInfoWindow(marker) {
+      const url = await Taberogu.get(marker.name);
       this.position = marker.position;
-      this.text = marker.name;
+      this.name = marker.name;
+      this.url = url;
       this.opened = true;
     },
   },
