@@ -1,28 +1,29 @@
 <template>
-<div>
-  <GmapMap
-    :center="center"
-    :zoom="13"
-    map-type-id="terrain"
-    style="width: 100%; height: 500px"
-  >
-    <GmapInfoWindow
-      :options="options"
-      :position="position"
-      :opened="opened"
-      @closeclick="opened = false"
+  <div>
+    <GmapMap
+      :center="center"
+      :zoom="13"
+      map-type-id="terrain"
+      style="width: 100%; height: 500px"
     >
-      <a :href="url" target="_blank">{{ name }}</a>
-    </GmapInfoWindow>
-    <GmapMarker
-      :key="index"
-      v-for="(m, index) in markers"
-      :position="m.position"
-      :clickable="true"
-      :draggable="false"
-      @click="toggleInfoWindow(m)"
-    />
-  </GmapMap>
+      <GmapInfoWindow
+        :options="options"
+        :position="position"
+        :opened="opened"
+        @closeclick="opened = false"
+      >
+        <a v-if='category=="飲食店"' :href="url" target="_blank">{{ name }}</a>
+        <span v-if='category!=="飲食店"'>{{ name }}</span>
+      </GmapInfoWindow>
+      <GmapMarker
+        :key="index"
+        v-for="(m, index) in markers"
+        :position="m.position"
+        :clickable="true"
+        :draggable="false"
+        @click="toggleInfoWindow(m)"
+      />
+    </GmapMap>
   </div>
 </template>
 
@@ -37,6 +38,7 @@ export default {
       position: null,
       name: null,
       url: null,
+      category: null,
       opened: false,
       options: {
         pixelOffset: {
@@ -52,6 +54,7 @@ export default {
       this.position = marker.position;
       this.name = marker.name;
       this.url = url;
+      this.category = marker.category;
       this.opened = true;
     },
   },
