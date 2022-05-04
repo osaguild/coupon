@@ -71,7 +71,16 @@ export default {
       this.info.star = tageroguInfo.star;
       this.info.category = marker.category;
       this.info.opened = true;
-      console.log("url:", this.info.url);
+    },
+  },
+  watch: {
+    markers() {
+      this.info.name = null;
+      this.info.url = null;
+      this.info.star = null;
+      this.info.category = null;
+      this.info.position = null;
+      this.info.opened = false;
     },
   },
 };
