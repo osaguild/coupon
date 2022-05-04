@@ -5,7 +5,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: dev
+      name: prd
     strategy:
       matrix:
         node-version: [16.x]
