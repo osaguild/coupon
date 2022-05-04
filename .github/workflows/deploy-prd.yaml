@@ -5,7 +5,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: dev
+      name: prd
     strategy:
       matrix:
         node-version: [16.x]
@@ -29,3 +29,13 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
           VUE_APP_GOOGLE_MAP_API: ${{ secrets.VUE_APP_GOOGLE_MAP_API }}
+          VUE_APP_TARGET: ${{ secrets.VUE_APP_TARGET }}
+          VUE_APP_TABEROGU_URL: ${{ secrets.VUE_APP_TABEROGU_URL }}
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@master
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          DISTRIBUTION: ${{ secrets.AWS_CF_DISTRIBUTION }}
+          PATHS: '/*'
