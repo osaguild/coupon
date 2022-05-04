@@ -7,13 +7,15 @@
       style="width: 100%; height: 500px"
     >
       <GmapInfoWindow
-        :options="options"
-        :position="position"
-        :opened="opened"
-        @closeclick="opened = false"
+        :options="info.options"
+        :position="info.position"
+        :opened="info.opened"
+        @closeclick="info.opened = false"
       >
-        <a v-if='category=="飲食店"' :href="url" target="_blank">{{ name }}</a>
-        <span v-if='category!=="飲食店"'>{{ name }}</span>
+        <a v-if="info.category == '飲食店'" :href="info.url" target="_blank"
+          >★{{ info.star }} {{ info.name }}</a
+        >
+        <span v-if="info.category !== '飲食店'">{{ info.name }}</span>
       </GmapInfoWindow>
       <GmapMarker
         :key="index"
@@ -35,27 +37,31 @@ export default {
   props: ["markers", "center"],
   data() {
     return {
-      position: null,
-      name: null,
-      url: null,
-      category: null,
-      opened: false,
-      options: {
-        pixelOffset: {
-          width: 0,
-          height: -35,
+      info: {
+        name: null,
+        url: null,
+        star: null,
+        category: null,
+        position: null,
+        opened: false,
+        options: {
+          pixelOffset: {
+            width: 0,
+            height: -35,
+          },
         },
       },
     };
   },
   methods: {
     async toggleInfoWindow(marker) {
-      const url = await Taberogu.get(marker.name);
-      this.position = marker.position;
-      this.name = marker.name;
-      this.url = url;
-      this.category = marker.category;
-      this.opened = true;
+      const tageroguInfo = await Taberogu.getShop(marker.name);
+      this.info.position = marker.position;
+      this.info.name = marker.name;
+      this.info.url = tageroguInfo.url;
+      this.info.star = tageroguInfo.star;
+      this.info.category = marker.category;
+      this.info.opened = true;
     },
   },
 };
