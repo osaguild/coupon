@@ -12,10 +12,19 @@
         :opened="info.opened"
         @closeclick="info.opened = false"
       >
-        <a v-if="info.category == '飲食店'" :href="info.url" target="_blank"
-          >★{{ info.star }} {{ info.name }}</a
+        <span v-if="info.category === '飲食店' && info.url === undefined">
+          {{ info.name }}
+        </span>
+        <a
+          v-else-if="info.category === '飲食店'"
+          :href="info.url"
+          target="_blank"
         >
-        <span v-if="info.category !== '飲食店'">{{ info.name }}</span>
+          ★{{ info.star }} {{ info.name }}
+        </a>
+        <span v-else-if="info.category !== '飲食店'">
+          {{ info.name }}
+        </span>
       </GmapInfoWindow>
       <GmapMarker
         :key="index"
@@ -62,6 +71,7 @@ export default {
       this.info.star = tageroguInfo.star;
       this.info.category = marker.category;
       this.info.opened = true;
+      console.log("url:", this.info.url);
     },
   },
 };
